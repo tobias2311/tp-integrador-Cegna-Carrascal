@@ -1,16 +1,12 @@
 # Sistema de autoservicio para artículos deportivos
 
-Plan de trabajo para el TP Integrador de Programación III (UTN), desarrollado por **Tobias** y **Augusto Carrascal**.
+Plan de trabajo para el TP Integrador de Programación III (UTN), desarrollado por **Tobias Cegna** y **Augusto Carrascal**.
 
 ## Idea del sistema
 
 Una tienda de autoservicio de artículos deportivos. El cliente podrá consultar un catálogo dividido en **indumentaria** y **equipamiento**, armar una compra y obtener un ticket. El personal administrador gestionará el catálogo y consultará ventas, encuestas y métricas.
 
 El rubro no es alimenticio, de acuerdo con la restricción del TP. Los nombres de marca, productos de ejemplo y credenciales de prueba quedan por definir; no deben incluirse contraseñas reales en el repositorio.
-
-## Alcance del repositorio
-
-Este repositorio comienza como una planificación y documentación del trabajo. No contiene una implementación ni código tomado del repositorio de referencia. Los archivos individuales distribuyen el trabajo entre los dos integrantes y el roadmap general permite seguir la secuencia completa.
 
 ## Documentos
 
