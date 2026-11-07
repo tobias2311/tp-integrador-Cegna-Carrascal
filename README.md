@@ -14,12 +14,17 @@ El rubro no es alimenticio, de acuerdo con la restricción del TP. Los nombres d
 - [Tareas de Tobias](roadmap_tobias.md): asignaciones individuales.
 - [Tareas de Augusto](roadmap_augusto.md): asignaciones individuales.
 
-## Organización prevista del sistema
+## Organización del sistema
 
-- `backend/`: servidor Node.js/Express, API JSON y acceso SQL directo con `mysql2/promise`; las pantallas administrativas se planifican como HTML/CSS/JavaScript nativos, salvo indicación del docente.
-- `frontend/`: interfaz del cliente para autoservicio, catálogo, compra, ticket, encuesta y detalle de producto.
+- `backend/`: servidor Node.js/Express, API JSON y acceso a MySQL mediante Sequelize ORM; las pantallas administrativas se desarrollarán de acuerdo con los requisitos del TP.
+- `frontend/`: interfaz del cliente. La página principal queda en la raíz; `css/` contiene estilos, `js/` la lógica del navegador y `assets/` imágenes e iconos. Actualmente hay un catálogo de prueba sin conexión a la API; las carpetas para otras pantallas o componentes se agregarán cuando hagan falta.
+- `documentacion/`: documentación técnica del proyecto cuando se incorpore.
 
-La base técnica prevista sigue el material consultado de la cátedra: Node.js con módulos ES, Express, MySQL, `mysql2/promise`, `dotenv` y frontend nativo. No se presupone el uso de ORM, EJS ni librerías para PDF, Excel o subida de archivos; esos puntos se deben confirmar con el docente porque el TP puede exigirlos aunque no aparezcan en los ejemplos revisados.
+La base técnica usa Node.js con módulos ES, Express, MySQL, Sequelize ORM, `dotenv` y frontend nativo. El dialecto MySQL de Sequelize usa `mysql2` como driver. Las herramientas de PDF, Excel y subida de archivos se confirmarán con el docente antes de implementarlas.
+
+### Backend inicial
+
+Desde `backend/`, copiá `.env.example` como `.env` y completá en `.env` los datos de tu instalación local de MySQL. `.env.example` contiene solo nombres de variables y valores de ejemplo; se puede versionar para que cada integrante sepa qué configuración necesita. `.env` contiene tus credenciales reales, por eso está excluido de Git y no debe compartirse ni subirse. Luego ejecutá `npm install` y `npm run dev`. El servidor comprueba la conexión a MySQL con Sequelize antes de iniciar en `http://localhost:3000`; `GET /api/health` permite comprobar que responde. Las pruebas se ejecutan con `npm test`.
 
 ## Cómo usar estos documentos
 

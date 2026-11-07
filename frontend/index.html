@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f2">
+    <title>Catálogo | Autoservicio deportivo</title>
+    <link rel="icon" href="assets/indumentaria.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/catalogo.css">
+    <script src="js/catalogo.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Autoservicio deportivo, inicio">
+        <span class="brand-mark" aria-hidden="true">AD</span>
+        <span class="brand-name">Autoservicio deportivo</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#catalogo" aria-current="page">Catálogo</a>
+        <a href="#equipo">Equipo</a>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">Tu próxima actividad empieza acá</p>
+        <h1 id="page-title">Encontrá lo que necesitás para moverte.</h1>
+        <p class="intro-copy">Explorá indumentaria y equipamiento para acompañar cada entrenamiento.</p>
+      </section>
+
+      <section class="catalog" id="catalogo" aria-labelledby="catalog-title">
+        <div class="catalog-heading">
+          <div>
+            <p class="eyebrow">Catálogo</p>
+            <h2 id="catalog-title">Productos</h2>
+          </div>
+          <p class="demo-note">Vista de prueba: productos de ejemplo, todavía sin conexión al servidor.</p>
+        </div>
+
+        <div class="category-filters" role="group" aria-label="Filtrar por categoría">
+          <button class="filter-button is-selected" type="button" data-category="todas" aria-pressed="true">Todos</button>
+          <button class="filter-button" type="button" data-category="indumentaria" aria-pressed="false">Indumentaria</button>
+          <button class="filter-button" type="button" data-category="equipamiento" aria-pressed="false">Equipamiento</button>
+        </div>
+
+        <p class="results-count" id="results-count" aria-live="polite"></p>
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer id="equipo">
+      <span>Trabajo Integrador · Programación III</span>
+      <span>Tobias Cegna y Augusto Carrascal</span>
+    </footer>
+  </body>
+</html>

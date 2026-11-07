@@ -7,11 +7,11 @@ Las tareas dependen del roadmap general. Coordinar contratos y entregas con Augu
 ## Etapa 1 — Base de proyecto y datos
 
 - [ ] Acordar con Augusto estructura, scripts, versiones y convenciones antes de inicializar.
-- [ ] Crear la estructura backend/frontend/documentación y la configuración inicial del servidor.
-- [ ] Preparar `.gitignore` y variables de entorno de ejemplo sin secretos reales.
-- [ ] Configurar conexión MySQL con `mysql2/promise`, pool y variables de entorno vía `dotenv`.
+- [x] Crear la estructura backend/frontend/documentación y la configuración inicial del servidor.
+- [x] Preparar `.gitignore` y variables de entorno de ejemplo sin secretos reales.
+- [x] Configurar conexión MySQL con Sequelize ORM, pool y variables de entorno vía `dotenv`.
 - [ ] Definir tablas, relaciones y esquema SQL para productos, ventas, usuarios, detalle de venta y encuestas.
-- [ ] Usar placeholders `?` en toda consulta con valores recibidos; evitar concatenar entradas en SQL.
+- [ ] Usar operaciones parametrizadas del ORM para valores recibidos; evitar concatenar entradas en SQL.
 - [ ] Crear datos de prueba para las categorías de indumentaria y equipamiento.
 - [ ] Documentar cómo levantar la base vacía y cargar los datos de demostración.
 

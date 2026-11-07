@@ -15,8 +15,8 @@ Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verif
 ## Acuerdos iniciales
 
 - [ ] **Ambos:** confirmar marca, identidad visual, nombre comercial y categorías iniciales (**indumentaria** y **equipamiento**).
-- [ ] **Ambos:** acordar la base técnica: Node.js (ESM), Express, MySQL, `mysql2/promise`, `dotenv` y frontend HTML/CSS/JavaScript nativo, de acuerdo con el material consultado de la cátedra.
-- [ ] **Ambos:** confirmar con el docente cómo resolver los requisitos no demostrados en clase: acceso/sesiones, hash de contraseñas, subida de archivos, Excel y PDF. No sumar ORM, EJS ni librerías para esos temas hasta confirmar que están permitidos y son necesarios.
+- [ ] **Ambos:** acordar la base técnica: Node.js (ESM), Express, MySQL con Sequelize ORM, `dotenv` y frontend HTML/CSS/JavaScript nativo; Sequelize usará `mysql2` como driver.
+- [ ] **Ambos:** confirmar con el docente cómo resolver los requisitos no demostrados en clase: acceso/sesiones, hash de contraseñas, subida de archivos, Excel y PDF.
 - [ ] **Augusto lidera, Tobias valida:** definir URL/origen de frontend y backend, formato de errores, paginación y estructura de respuestas de la API.
 - [ ] **Tobias lidera, Augusto valida:** definir usuario de prueba del administrador sin publicar secretos reales.
 - [ ] **Ambos:** convertir las tareas en Issues, asignar responsables y acordar ramas/pull requests.
@@ -29,7 +29,7 @@ Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verif
 
 - [ ] **Tobias:** crear estructura `backend/` y preparar su inicialización con módulos ES, npm y `node --watch`.
 - [ ] **Augusto:** crear estructura `frontend/` y preparar las páginas base con HTML semántico, CSS externo y JavaScript nativo; cargar scripts externos con `defer`.
-- [ ] **Tobias:** limitar dependencias iniciales del backend a las usadas en el ejemplo (`express`, `dotenv`, `mysql2`; `cors` si frontend y API lo requieren), y configurar variables de entorno y `.gitignore`.
+- [ ] **Tobias:** limitar dependencias iniciales del backend a las necesarias (`express`, `dotenv`, `sequelize`, `mysql2`; `cors` si frontend y API lo requieren), y configurar variables de entorno y `.gitignore`.
 - [ ] **Tobias:** preparar Express para JSON y CORS según el despliegue; agregar otros middlewares solo cuando el flujo lo necesite y la cátedra lo haya explicado o aprobado.
 - [ ] **Ambos:** mantener inicialmente la organización sencilla de los ejemplos (`index.js`, configuración y conexión a DB); separar módulos adicionales cuando ayude al TP y no introduzca patrones no vistos.
 
@@ -39,16 +39,16 @@ Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verif
 
 **Responsable principal:** Tobias. Augusto revisa junto a él los datos que la API necesita recibir y devolver.
 
-- [ ] **Tobias:** configurar `mysql2/promise`, un pool de conexiones y credenciales leídas desde `.env` con `dotenv`.
+- [ ] **Tobias:** configurar Sequelize ORM para MySQL, su pool de conexiones y credenciales leídas desde `.env` con `dotenv`.
 - [ ] Definir y documentar los modelos:
   - Producto: identificador, nombre, descripción, precio, URL/ruta de imagen, categoría y estado activo.
   - Venta: identificador, nombre del cliente, fecha y total.
   - Usuario administrador: correo único y contraseña almacenada con hash.
   - Detalle de venta: relación muchos-a-muchos entre ventas y productos, cantidad y precio unitario al momento de la compra.
   - Encuesta: respuestas, fecha y referencia al archivo enviado.
-- [ ] **Tobias:** crear el esquema con SQL y definir relaciones, restricciones y reglas de borrado necesarias.
-- [ ] **Tobias:** usar consultas SQL parametrizadas con placeholders `?` para valores variables; nunca concatenar datos de entrada en una consulta.
-- [ ] **Tobias:** seleccionar únicamente las columnas necesarias y validar identificadores/datos antes de consultar.
+- [ ] **Tobias:** definir los modelos Sequelize, relaciones, restricciones y reglas de borrado necesarias.
+- [ ] **Tobias:** usar operaciones parametrizadas del ORM para valores variables; nunca concatenar datos de entrada en SQL.
+- [ ] **Tobias:** seleccionar únicamente los atributos necesarios y validar identificadores/datos antes de consultar.
 - [ ] **Tobias:** crear un procedimiento reproducible para inicializar el esquema y datos iniciales de demostración no sensibles.
 - [ ] **Ambos:** verificar que la creación del esquema y la carga inicial funcionen desde cero, y revisar que el modelo cubra los datos necesarios para la API.
 
