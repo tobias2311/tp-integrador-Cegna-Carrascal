@@ -1,4 +1,4 @@
-const products = [
+const FALLBACK_PRODUCTS = [
   {
     name: "Remera deportiva",
     category: "indumentaria",
@@ -43,14 +43,21 @@ const products = [
   },
 ];
 
+let products = [...FALLBACK_PRODUCTS];
+let currentCategory = "todas";
+
+const API_BASE_URL = "http://localhost:3000";
 const productGrid = document.querySelector("#product-grid");
 const resultsCount = document.querySelector("#results-count");
 const filterButtons = document.querySelectorAll(".filter-button");
+const demoNote = document.querySelector(".demo-note");
+
 const currencyFormatter = new Intl.NumberFormat("es-AR", {
   style: "currency",
   currency: "ARS",
   maximumFractionDigits: 0,
 });
+
 const categoryLabels = {
   indumentaria: "Indumentaria",
   equipamiento: "Equipamiento",
@@ -63,8 +70,8 @@ function createProductCard(product) {
   const imageContainer = document.createElement("div");
   imageContainer.className = "product-image";
   const image = document.createElement("img");
-  image.src = product.image;
-  image.alt = "";
+  image.src = product.image || "assets/indumentaria.svg";
+  image.alt = product.name;
   image.loading = "lazy";
   imageContainer.append(image);
 
@@ -73,7 +80,7 @@ function createProductCard(product) {
 
   const category = document.createElement("p");
   category.className = "product-category";
-  category.textContent = categoryLabels[product.category];
+  category.textContent = categoryLabels[product.category] ?? product.category;
 
   const name = document.createElement("h3");
   name.className = "product-name";
@@ -81,7 +88,7 @@ function createProductCard(product) {
 
   const description = document.createElement("p");
   description.className = "product-description";
-  description.textContent = product.description;
+  description.textContent = product.description || "";
 
   const price = document.createElement("p");
   price.className = "product-price";
@@ -92,19 +99,21 @@ function createProductCard(product) {
   return article;
 }
 
-function renderProducts(selectedCategory = "todas") {
+function renderProducts(selectedCategory = currentCategory) {
+  currentCategory = selectedCategory;
+
   const visibleProducts = selectedCategory === "todas"
     ? products
     : products.filter((product) => product.category === selectedCategory);
 
-  resultsCount.textContent = `${visibleProducts.length} productos de ejemplo`;
+  resultsCount.textContent = `${visibleProducts.length} productos`;
 
   productGrid.replaceChildren();
 
   if (visibleProducts.length === 0) {
     const emptyState = document.createElement("p");
     emptyState.className = "empty-state";
-    emptyState.textContent = "No hay productos para mostrar.";
+    emptyState.textContent = "No hay productos disponibles en esta categoría.";
     productGrid.append(emptyState);
     return;
   }
@@ -126,4 +135,28 @@ filterButtons.forEach((button) => {
   });
 });
 
+async function loadProductsFromApi() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/products`);
+    if (!response.ok) {
+      throw new Error(`Error HTTP ${response.status}`);
+    }
+    const data = await response.json();
+    if (Array.isArray(data.payload) && data.payload.length > 0) {
+      products = data.payload;
+      if (demoNote) {
+        demoNote.textContent = "Conectado a la API: catálogo sincronizado desde la base de datos.";
+      }
+      renderProducts(currentCategory);
+    }
+  } catch (_error) {
+    console.info("Servidor backend no disponible, usando catálogo local de respaldo.");
+    if (demoNote) {
+      demoNote.textContent = "Vista local: servidor backend desconectado. Mostrando datos de respaldo.";
+    }
+  }
+}
+
+// Renderizado inicial con datos locales y sincronización asíncrona con la API
 renderProducts();
+loadProductsFromApi();
