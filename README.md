@@ -83,7 +83,13 @@ Para iniciar el backend sin el modo de desarrollo, usá `npm start` desde `backe
 
 ### 3. Abrir el frontend
 
-Con el backend en ejecución, abrí `frontend/index.html` en el navegador. El catálogo intenta cargar los productos desde la API y muestra productos de respaldo si el backend no está disponible.
+Abrí [frontend/index.html](./frontend/index.html) en el navegador para ver el catálogo. Con el backend en ejecución, también podés verificarlo y consultar los productos en estos enlaces:
+
+- [Página del catálogo](./frontend/index.html) (se abre localmente desde el proyecto).
+- [Estado de la API](http://localhost:3000/api/health).
+- [Productos cargados en la base de datos](http://localhost:3000/api/products).
+
+La respuesta de productos contiene los datos en `payload`. Si la base todavía no tiene productos, la API responde que no se encontraron. El catálogo intenta cargar los productos desde la API y muestra productos de respaldo si el backend no está disponible.
 
 El backend define los comandos `npm run dev` y `npm start`; actualmente no hay un comando `npm test` configurado.
 
