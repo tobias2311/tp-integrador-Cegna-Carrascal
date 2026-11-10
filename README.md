@@ -16,7 +16,7 @@ El rubro no es alimenticio, de acuerdo con la restricción del TP. Los nombres d
 
 ## Organización del sistema
 
-- `backend/`: servidor Node.js/Express, API JSON y acceso a MySQL mediante Sequelize ORM; las pantallas administrativas se desarrollarán de acuerdo con los requisitos del TP.
+- `backend/`: servidor Node.js/Express y API JSON. `index.js` inicia el servidor, `src/app.js` configura Express, y `src/api/` organiza rutas, controladores, validaciones, configuración y acceso a MySQL mediante `mysql2`.
 - `frontend/`: interfaz del cliente. La página principal queda en la raíz; `css/` contiene estilos, `js/` la lógica del navegador y `assets/` imágenes e iconos. Actualmente hay un catálogo de prueba sin conexión a la API; las carpetas para otras pantallas o componentes se agregarán cuando hagan falta.
 - `documentacion/`: documentación técnica del proyecto cuando se incorpore.
 
