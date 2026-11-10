@@ -16,15 +16,76 @@ El rubro no es alimenticio, de acuerdo con la restricción del TP. Los nombres d
 
 ## Organización del sistema
 
-- `backend/`: servidor Node.js/Express y API JSON. `index.js` inicia el servidor, `src/app.js` configura Express, y `src/api/` organiza rutas, controladores, validaciones, configuración y acceso a MySQL mediante `mysql2`.
-- `frontend/`: interfaz del cliente. La página principal queda en la raíz; `css/` contiene estilos, `js/` la lógica del navegador y `assets/` imágenes e iconos. Actualmente hay un catálogo de prueba sin conexión a la API; las carpetas para otras pantallas o componentes se agregarán cuando hagan falta.
-- `documentacion/`: documentación técnica del proyecto cuando se incorpore.
+La base técnica usa Node.js con módulos ES, Express, MySQL mediante `mysql2`, `dotenv` y frontend nativo.
 
-La base técnica usa Node.js con módulos ES, Express, MySQL, Sequelize ORM, `dotenv` y frontend nativo. El dialecto MySQL de Sequelize usa `mysql2` como driver. Las herramientas de PDF, Excel y subida de archivos se confirmarán con el docente antes de implementarlas.
+```text
+backend/
+├── index.js                          # Inicia el servidor
+├── database.sql                      # Crea la base y la tabla de productos
+├── package.json                      # Dependencias y comandos npm
+├── package-lock.json                 # Versiones instaladas de dependencias
+├── .env.example                      # Plantilla de configuración local
+└── src/
+    ├── app.js                        # Configuración de Express y middleware general
+    └── api/
+        ├── config/
+        │   └── environments.js       # Configuración leída desde .env
+        ├── controllers/
+        │   └── products.controller.js  # Lógica de los endpoints de productos
+        ├── database/
+        │   └── db.js                  # Pool de conexiones MySQL
+        ├── middleware/
+        │   └── product-validation.js  # Validación de productos e identificadores
+        └── routes/
+            └── products.routes.js     # Rutas de la API
 
-### Backend inicial
+frontend/
+├── index.html                        # Página del catálogo
+├── assets/                           # Imágenes de indumentaria y equipamiento
+├── css/
+│   ├── base.css                      # Estilos generales
+│   ├── navbar.css                    # Encabezado y navegación
+│   └── catalogo.css                  # Catálogo y tarjetas de productos
+└── js/
+    └── catalogo.js                   # Filtros, renderizado y conexión a la API
+```
 
-Desde `backend/`, copiá `.env.example` como `.env` y completá en `.env` los datos de tu instalación local de MySQL. `.env.example` contiene solo nombres de variables y valores de ejemplo; se puede versionar para que cada integrante sepa qué configuración necesita. `.env` contiene tus credenciales reales, por eso está excluido de Git y no debe compartirse ni subirse. Luego ejecutá `npm install` y `npm run dev`. El servidor comprueba la conexión a MySQL con Sequelize antes de iniciar en `http://localhost:3000`; `GET /api/health` permite comprobar que responde. Las pruebas se ejecutan con `npm test`.
+## Instalación y configuración local
+
+### Requisitos previos
+
+- Node.js y npm.
+- MySQL instalado y en ejecución.
+
+### 1. Crear la base de datos
+
+Ejecutá el script `backend/database.sql` con MySQL Workbench o phpMyAdmin. El script crea la base `autoservicio_deportivo` y la tabla `products`.
+
+### 2. Configurar y ejecutar el backend
+
+Desde la raíz del repositorio, ejecutá:
+
+```powershell
+cd backend
+Copy-Item .env.example .env
+```
+
+Editá el archivo `.env` (dentro de `backend/`) con los datos de tu MySQL (`DB_HOST`, `DB_NAME`, `DB_USER` y `DB_PASSWORD`). El archivo `.env` es local y no se sube a Git. Después, desde `backend/`, instalá las dependencias e iniciá el servidor:
+
+```powershell
+npm install
+npm run dev
+```
+
+El servidor queda disponible en `http://localhost:3000`. Para verificar que responde, abrí `http://localhost:3000/api/health`; debería devolver `{"status":"ok"}`. La terminal también informa si pudo conectarse a MySQL.
+
+Para iniciar el backend sin el modo de desarrollo, usá `npm start` desde `backend/`.
+
+### 3. Abrir el frontend
+
+Con el backend en ejecución, abrí `frontend/index.html` en el navegador. El catálogo intenta cargar los productos desde la API y muestra productos de respaldo si el backend no está disponible.
+
+El backend define los comandos `npm run dev` y `npm start`; actualmente no hay un comando `npm test` configurado.
 
 ## Cómo usar estos documentos
 
