@@ -1,136 +1,3 @@
-:root {
-  color-scheme: light;
-  --page: #f5f7f2;
-  --surface: #ffffff;
-  --ink: #1d2924;
-  --muted: #65736b;
-  --line: #dce4dc;
-  --accent: #28664d;
-  --accent-dark: #194b38;
-  --accent-soft: #e5efe8;
-  --shadow: 0 16px 36px rgb(26 49 37 / 8%);
-  font-family: "Segoe UI", Arial, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-width: 320px;
-  margin: 0;
-  background: var(--page);
-  color: var(--ink);
-}
-
-a {
-  color: inherit;
-}
-
-button {
-  font: inherit;
-}
-
-.site-header {
-  display: flex;
-  min-height: 76px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 14px max(24px, calc((100% - 1160px) / 2));
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-
-.brand-mark {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border-radius: 14px;
-  background: var(--accent);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
-
-.brand-name {
-  font-size: 15px;
-  font-weight: 750;
-  letter-spacing: -0.02em;
-}
-
-.site-header nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.site-header nav a {
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 650;
-  text-decoration: none;
-}
-
-.site-header nav a:hover,
-.site-header nav a:focus-visible,
-.site-header nav a[aria-current="page"] {
-  color: var(--accent-dark);
-}
-
-main {
-  width: min(1160px, calc(100% - 48px));
-  margin: 0 auto;
-}
-
-.intro {
-  padding: 72px 0 56px;
-}
-
-.eyebrow {
-  margin: 0 0 12px;
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-h1,
-h2,
-p {
-  margin-top: 0;
-}
-
-h1 {
-  max-width: 700px;
-  margin-bottom: 16px;
-  font-size: clamp(36px, 6vw, 64px);
-  letter-spacing: -0.055em;
-  line-height: 1.04;
-}
-
-.intro-copy {
-  max-width: 550px;
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 1.6;
-}
-
 .catalog {
   padding: 32px;
   border: 1px solid var(--line);
@@ -159,42 +26,6 @@ h2 {
   font-size: 13px;
   line-height: 1.5;
   text-align: right;
-}
-
-.category-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 28px 0 20px;
-}
-
-.filter-button {
-  min-height: 42px;
-  padding: 9px 16px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.filter-button:hover {
-  border-color: var(--accent);
-  color: var(--accent-dark);
-}
-
-.filter-button.is-selected {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: #fff;
-}
-
-.filter-button:focus-visible,
-a:focus-visible {
-  outline: 3px solid #82b99a;
-  outline-offset: 3px;
 }
 
 .results-count {
@@ -274,29 +105,9 @@ a:focus-visible {
   text-align: center;
 }
 
-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  width: min(1160px, calc(100% - 48px));
-  margin: 36px auto 0;
-  padding: 20px 0 32px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
 @media (max-width: 760px) {
-  .site-header {
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .intro {
-    padding: 56px 0 40px;
   }
 
   .catalog {
@@ -305,30 +116,6 @@ footer {
 }
 
 @media (max-width: 520px) {
-  .site-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .site-header nav {
-    width: 100%;
-    gap: 20px;
-  }
-
-  main,
-  footer {
-    width: min(100% - 32px, 420px);
-  }
-
-  .intro {
-    padding-top: 44px;
-  }
-
-  .intro-copy {
-    font-size: 16px;
-  }
-
   .catalog-heading {
     align-items: flex-start;
     flex-direction: column;
@@ -345,9 +132,5 @@ footer {
 
   .product-image {
     min-height: 170px;
-  }
-
-  footer {
-    flex-direction: column;
   }
 }

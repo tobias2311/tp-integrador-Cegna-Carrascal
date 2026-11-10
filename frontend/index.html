@@ -6,6 +6,8 @@
     <meta name="theme-color" content="#f5f7f2">
     <title>Catálogo | Autoservicio deportivo</title>
     <link rel="icon" href="assets/indumentaria.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/catalogo.css">
     <script src="js/catalogo.js" defer></script>
   </head>
@@ -15,9 +17,10 @@
         <span class="brand-mark" aria-hidden="true">AD</span>
         <span class="brand-name">Autoservicio deportivo</span>
       </a>
-      <nav aria-label="Navegación principal">
-        <a href="#catalogo" aria-current="page">Catálogo</a>
-        <a href="#equipo">Equipo</a>
+      <nav aria-label="Categorías de productos">
+        <button class="filter-button is-selected" type="button" data-category="todas" aria-pressed="true">Catálogo</button>
+        <button class="filter-button" type="button" data-category="indumentaria" aria-pressed="false">Indumentaria</button>
+        <button class="filter-button" type="button" data-category="equipamiento" aria-pressed="false">Equipo</button>
       </nav>
     </header>
 
@@ -31,16 +34,10 @@
       <section class="catalog" id="catalogo" aria-labelledby="catalog-title">
         <div class="catalog-heading">
           <div>
-            <p class="eyebrow">Catálogo</p>
+            <p class="eyebrow">Productos</p>
             <h2 id="catalog-title">Productos</h2>
           </div>
           <p class="demo-note">Vista de prueba: productos de ejemplo, todavía sin conexión al servidor.</p>
-        </div>
-
-        <div class="category-filters" role="group" aria-label="Filtrar por categoría">
-          <button class="filter-button is-selected" type="button" data-category="todas" aria-pressed="true">Todos</button>
-          <button class="filter-button" type="button" data-category="indumentaria" aria-pressed="false">Indumentaria</button>
-          <button class="filter-button" type="button" data-category="equipamiento" aria-pressed="false">Equipamiento</button>
         </div>
 
         <p class="results-count" id="results-count" aria-live="polite"></p>
@@ -48,7 +45,7 @@
       </section>
     </main>
 
-    <footer id="equipo">
+    <footer>
       <span>Trabajo Integrador · Programación III</span>
       <span>Tobias Cegna y Augusto Carrascal</span>
     </footer>

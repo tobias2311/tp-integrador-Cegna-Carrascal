@@ -35,6 +35,13 @@ const FALLBACK_PRODUCTS = [
     image: "assets/equipamiento.svg",
   },
   {
+    name: "Mancuernas",
+    category: "equipamiento",
+    description: "Par de mancuernas para sumar ejercicios de fuerza.",
+    price: 28900,
+    image: "assets/equipamiento.svg",
+  },
+  {
     name: "Botella deportiva",
     category: "equipamiento",
     description: "Botella reutilizable para llevar a cada actividad.",
@@ -50,6 +57,7 @@ const API_BASE_URL = "http://localhost:3000";
 const productGrid = document.querySelector("#product-grid");
 const resultsCount = document.querySelector("#results-count");
 const filterButtons = document.querySelectorAll(".filter-button");
+const catalogTitle = document.querySelector("#catalog-title");
 const demoNote = document.querySelector(".demo-note");
 
 const currencyFormatter = new Intl.NumberFormat("es-AR", {
@@ -61,6 +69,12 @@ const currencyFormatter = new Intl.NumberFormat("es-AR", {
 const categoryLabels = {
   indumentaria: "Indumentaria",
   equipamiento: "Equipamiento",
+};
+
+const sectionTitles = {
+  todas: "Catálogo",
+  indumentaria: "Indumentaria",
+  equipamiento: "Equipo",
 };
 
 function createProductCard(product) {
@@ -101,6 +115,7 @@ function createProductCard(product) {
 
 function renderProducts(selectedCategory = currentCategory) {
   currentCategory = selectedCategory;
+  catalogTitle.textContent = sectionTitles[selectedCategory];
 
   const visibleProducts = selectedCategory === "todas"
     ? products
