@@ -93,7 +93,7 @@ Con el backend en ejecución, abrí estos enlaces:
 - Estado de la API: [http://localhost:3000/api/health](http://localhost:3000/api/health).
 - Página con los productos de la base de datos: [http://localhost:3000/api/products](http://localhost:3000/api/products).
 
-La respuesta de productos contiene los datos en `payload`. Si la base todavía no tiene productos, la API responde que no se encontraron. El catálogo intenta cargar los productos desde la API y muestra productos de respaldo si el backend no está disponible.
+La respuesta de productos contiene los datos en `payload`. El catálogo muestra únicamente productos guardados en la base de datos; si la API no está disponible o no hay productos cargados, muestra un mensaje en vez de productos de respaldo.
 
 El backend define los comandos `npm run dev` y `npm start`; actualmente no hay un comando `npm test` configurado.
 

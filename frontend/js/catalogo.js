@@ -1,57 +1,6 @@
-const FALLBACK_PRODUCTS = [
-  {
-    name: "Remera deportiva",
-    category: "indumentaria",
-    description: "Prenda liviana para entrenar con comodidad.",
-    price: 24900,
-    image: "assets/indumentaria.svg",
-  },
-  {
-    name: "Short de entrenamiento",
-    category: "indumentaria",
-    description: "Diseño versátil para actividades al aire libre o gimnasio.",
-    price: 18900,
-    image: "assets/indumentaria.svg",
-  },
-  {
-    name: "Campera deportiva",
-    category: "indumentaria",
-    description: "Una capa liviana para el inicio y el final de cada rutina.",
-    price: 42900,
-    image: "assets/indumentaria.svg",
-  },
-  {
-    name: "Pelota de fútbol",
-    category: "equipamiento",
-    description: "Un básico para partidos y prácticas recreativas.",
-    price: 32900,
-    image: "assets/equipamiento.svg",
-  },
-  {
-    name: "Bandas elásticas",
-    category: "equipamiento",
-    description: "Set de bandas para sumar variedad al entrenamiento.",
-    price: 15900,
-    image: "assets/equipamiento.svg",
-  },
-  {
-    name: "Mancuernas",
-    category: "equipamiento",
-    description: "Par de mancuernas para sumar ejercicios de fuerza.",
-    price: 28900,
-    image: "assets/equipamiento.svg",
-  },
-  {
-    name: "Botella deportiva",
-    category: "equipamiento",
-    description: "Botella reutilizable para llevar a cada actividad.",
-    price: 9900,
-    image: "assets/equipamiento.svg",
-  },
-];
-
-let products = [...FALLBACK_PRODUCTS];
+let products = [];
 let currentCategory = "todas";
+let catalogStatus = "loading";
 
 const API_BASE_URL = "http://localhost:3000";
 const productGrid = document.querySelector("#product-grid");
@@ -84,7 +33,7 @@ function createProductCard(product) {
   const imageContainer = document.createElement("div");
   imageContainer.className = "product-image";
   const image = document.createElement("img");
-  image.src = product.image || "assets/indumentaria.svg";
+  image.src = product.image;
   image.alt = product.name;
   image.loading = "lazy";
   imageContainer.append(image);
@@ -128,7 +77,13 @@ function renderProducts(selectedCategory = currentCategory) {
   if (visibleProducts.length === 0) {
     const emptyState = document.createElement("p");
     emptyState.className = "empty-state";
-    emptyState.textContent = "No hay productos disponibles en esta categoría.";
+    const emptyMessages = {
+      loading: "Cargando productos...",
+      empty: "No hay productos cargados en esta categoría.",
+      unavailable: "No se pudieron cargar los productos. Verificá que la API y la base de datos estén disponibles.",
+    };
+    emptyState.textContent = emptyMessages[catalogStatus]
+      ?? "No hay productos disponibles en esta categoría.";
     productGrid.append(emptyState);
     return;
   }
@@ -153,25 +108,41 @@ filterButtons.forEach((button) => {
 async function loadProductsFromApi() {
   try {
     const response = await fetch(`${API_BASE_URL}/api/products`);
+    if (response.status === 404) {
+      products = [];
+      catalogStatus = "empty";
+      if (demoNote) {
+        demoNote.textContent = "API conectada, pero no hay productos cargados en la base de datos.";
+      }
+      renderProducts(currentCategory);
+      return;
+    }
+
     if (!response.ok) {
       throw new Error(`Error HTTP ${response.status}`);
     }
+
     const data = await response.json();
-    if (Array.isArray(data.payload) && data.payload.length > 0) {
-      products = data.payload;
-      if (demoNote) {
-        demoNote.textContent = "Conectado a la API: catálogo sincronizado desde la base de datos.";
-      }
-      renderProducts(currentCategory);
+    if (!Array.isArray(data.payload)) {
+      throw new Error("La API devolvió una respuesta sin una lista de productos.");
     }
-  } catch (_error) {
-    console.info("Servidor backend no disponible, usando catálogo local de respaldo.");
+
+    products = data.payload;
+    catalogStatus = products.length > 0 ? "loaded" : "empty";
     if (demoNote) {
-      demoNote.textContent = "Vista local: servidor backend desconectado. Mostrando datos de respaldo.";
+      demoNote.textContent = "Conectado a la API: productos cargados desde la base de datos.";
     }
+    renderProducts(currentCategory);
+  } catch (error) {
+    console.error("Error cargando productos desde la API:", error);
+    products = [];
+    catalogStatus = "unavailable";
+    if (demoNote) {
+      demoNote.textContent = "No fue posible consultar los productos en la API y la base de datos.";
+    }
+    renderProducts(currentCategory);
   }
 }
 
-// Renderizado inicial con datos locales y sincronización asíncrona con la API
 renderProducts();
 loadProductsFromApi();
