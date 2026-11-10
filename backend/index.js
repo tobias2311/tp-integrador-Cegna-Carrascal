@@ -265,8 +265,14 @@ app.delete("/api/products/:id", validateId, deleteProduct);
 app.delete("/api/productos/:id", validateId, deleteProduct);
 
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    try {
+        await connection.query("SELECT 1");
+        console.log("Conectado exitosamente a la base de datos MySQL");
+    } catch (error) {
+        console.error("Aviso: No se pudo conectar a MySQL:", error.message);
+    }
 });
 
 export default app;
