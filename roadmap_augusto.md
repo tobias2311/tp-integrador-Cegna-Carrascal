@@ -6,14 +6,14 @@ Las tareas dependen del roadmap general. Acordar con Tobias interfaces, nombres 
 
 ## Etapa 1 — API y validaciones
 
-- [ ] Acordar con Tobias contrato de datos, paginación, respuestas JSON y errores.
-- [ ] Mantener Express, módulos ES y rutas con las herramientas vistas; confirmar con el docente cualquier middleware o patrón adicional que haga falta.
-- [ ] Implementar endpoints Express para configurar el administrador y consultar el catálogo.
-- [ ] Implementar listado paginado de productos activos y detalle de producto por ID.
-- [ ] Validar parámetros/IDs, campos obligatorios, tipos, formato de correo y valores positivos donde corresponda.
+- [x] Acordar con Tobias contrato de datos, respuestas JSON y errores (`{ payload }`, `{ message }`, `{ listaErrores }`).
+- [x] Mantener Express, módulos ES y rutas con las herramientas vistas en la cátedra (sin patrones no vistos en clase).
+- [x] Implementar endpoints Express: `GET /api/products`, `GET /api/products/:id`, `POST /api/products`, `PUT /api/products/:id`, `DELETE /api/products/:id`.
+- [x] Implementar listado de productos activos y detalle de producto por ID con validación de ID entero positivo.
+- [x] Validar parámetros/IDs, campos obligatorios, tipos y valores positivos con middlewares `validateId` y `validateProduct`.
 - [ ] Implementar registro de ventas: validar disponibilidad y cantidades, delegar persistencia y comprobar total calculado en servidor.
 - [ ] Implementar historial de ventas con sus productos, cantidades y precios al momento de la compra.
-- [ ] Probar respuestas de éxito, validaciones y errores HTTP con datos de prueba.
+- [x] Probar respuestas de éxito, validaciones y errores HTTP con datos de prueba (manualmente en navegador y phpMyAdmin).
 
 ## Etapa 2 — Administración, métricas y exportación
 

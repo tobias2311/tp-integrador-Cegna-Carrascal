@@ -2,7 +2,7 @@
 
 **Sistema:** autoservicio de artículos deportivos
 **Integrantes:** Tobias y Augusto Carrascal
-**Estado:** planificación inicial
+**Estado:** en desarrollo — Etapa 1 y parte de Etapa 3 completadas
 
 Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verificables. La asignación detallada está en [roadmap_tobias.md](roadmap_tobias.md) y [roadmap_augusto.md](roadmap_augusto.md). No marcar como completado hasta probar el comportamiento correspondiente.
 
@@ -14,10 +14,10 @@ Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verif
 
 ## Acuerdos iniciales
 
-- [ ] **Ambos:** confirmar marca, identidad visual, nombre comercial y categorías iniciales (**indumentaria** y **equipamiento**).
-- [ ] **Ambos:** acordar la base técnica: Node.js (ESM), Express, MySQL con Sequelize ORM, `dotenv` y frontend HTML/CSS/JavaScript nativo; Sequelize usará `mysql2` como driver.
+- [x] **Ambos:** confirmar marca, identidad visual, nombre comercial y categorías iniciales (**indumentaria** y **equipamiento**).
+- [x] **Ambos:** acordar la base técnica: Node.js (ESM), Express, MySQL con `mysql2/promise`, `dotenv` y frontend HTML/CSS/JavaScript nativo.
 - [ ] **Ambos:** confirmar con el docente cómo resolver los requisitos no demostrados en clase: acceso/sesiones, hash de contraseñas, subida de archivos, Excel y PDF.
-- [ ] **Augusto lidera, Tobias valida:** definir URL/origen de frontend y backend, formato de errores, paginación y estructura de respuestas de la API.
+- [x] **Augusto lidera, Tobias valida:** definir URL/origen de frontend y backend, formato de errores y estructura de respuestas de la API (`{ payload }`, `{ message }`, `{ listaErrores }`).
 - [ ] **Tobias lidera, Augusto valida:** definir usuario de prueba del administrador sin publicar secretos reales.
 - [ ] **Ambos:** convertir las tareas en Issues, asignar responsables y acordar ramas/pull requests.
 
@@ -27,11 +27,11 @@ Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verif
 
 **Responsables:** Tobias prepara el esqueleto del backend; Augusto prepara la base de las pantallas del cliente. Las decisiones y el contrato inicial se acuerdan entre ambos.
 
-- [ ] **Tobias:** crear estructura `backend/` y preparar su inicialización con módulos ES, npm y `node --watch`.
-- [ ] **Augusto:** crear estructura `frontend/` y preparar las páginas base con HTML semántico, CSS externo y JavaScript nativo; cargar scripts externos con `defer`.
-- [ ] **Tobias:** limitar dependencias iniciales del backend a las necesarias (`express`, `dotenv`, `sequelize`, `mysql2`; `cors` si frontend y API lo requieren), y configurar variables de entorno y `.gitignore`.
-- [ ] **Tobias:** preparar Express para JSON y CORS según el despliegue; agregar otros middlewares solo cuando el flujo lo necesite y la cátedra lo haya explicado o aprobado.
-- [ ] **Ambos:** mantener inicialmente la organización sencilla de los ejemplos (`index.js`, configuración y conexión a DB); separar módulos adicionales cuando ayude al TP y no introduzca patrones no vistos.
+- [x] **Tobias:** crear estructura `backend/` y preparar su inicialización con módulos ES, npm y `node --watch`.
+- [x] **Augusto:** crear estructura `frontend/` y preparar las páginas base con HTML semántico, CSS externo y JavaScript nativo; cargar scripts externos con `defer`.
+- [x] **Tobias:** limitar dependencias iniciales del backend a las necesarias (`express`, `dotenv`, `mysql2`, `cors`) y configurar variables de entorno y `.gitignore`.
+- [x] **Tobias:** preparar Express para JSON y CORS según el despliegue; agregar otros middlewares solo cuando el flujo lo necesite y la cátedra lo haya explicado o aprobado.
+- [x] **Ambos:** mantener inicialmente la organización sencilla de los ejemplos (`index.js`, configuración y conexión a DB); separar módulos adicionales cuando ayude al TP y no introduzca patrones no vistos.
 
 **Salida:** aplicación inicia localmente con configuración documentada y sin secretos versionados.
 
@@ -39,17 +39,17 @@ Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verif
 
 **Responsable principal:** Tobias. Augusto revisa junto a él los datos que la API necesita recibir y devolver.
 
-- [ ] **Tobias:** configurar Sequelize ORM para MySQL, su pool de conexiones y credenciales leídas desde `.env` con `dotenv`.
+- [x] **Tobias:** configurar pool de conexiones MySQL con `mysql2/promise` y credenciales leídas desde `.env` con `dotenv`.
 - [ ] Definir y documentar los modelos:
-  - Producto: identificador, nombre, descripción, precio, URL/ruta de imagen, categoría y estado activo.
-  - Venta: identificador, nombre del cliente, fecha y total.
-  - Usuario administrador: correo único y contraseña almacenada con hash.
-  - Detalle de venta: relación muchos-a-muchos entre ventas y productos, cantidad y precio unitario al momento de la compra.
-  - Encuesta: respuestas, fecha y referencia al archivo enviado.
-- [ ] **Tobias:** definir los modelos Sequelize, relaciones, restricciones y reglas de borrado necesarias.
-- [ ] **Tobias:** usar operaciones parametrizadas del ORM para valores variables; nunca concatenar datos de entrada en SQL.
-- [ ] **Tobias:** seleccionar únicamente los atributos necesarios y validar identificadores/datos antes de consultar.
-- [ ] **Tobias:** crear un procedimiento reproducible para inicializar el esquema y datos iniciales de demostración no sensibles.
+  - [x] Producto: identificador, nombre, descripción, precio, URL/ruta de imagen, categoría y estado activo.
+  - [ ] Venta: identificador, nombre del cliente, fecha y total.
+  - [ ] Usuario administrador: correo único y contraseña almacenada con hash.
+  - [ ] Detalle de venta: relación muchos-a-muchos entre ventas y productos, cantidad y precio unitario al momento de la compra.
+  - [ ] Encuesta: respuestas, fecha y referencia al archivo enviado.
+- [ ] **Tobias:** definir el esquema SQL completo, relaciones, restricciones y reglas de borrado necesarias.
+- [x] **Tobias:** usar consultas parametrizadas con `?` para valores variables; nunca concatenar datos de entrada en SQL.
+- [x] **Tobias:** seleccionar únicamente los atributos necesarios y validar identificadores/datos antes de consultar.
+- [x] **Tobias:** crear script SQL reproducible para inicializar el esquema y datos iniciales de demostración (`database.sql`).
 - [ ] **Ambos:** verificar que la creación del esquema y la carga inicial funcionen desde cero, y revisar que el modelo cubra los datos necesarios para la API.
 
 **Salida:** datos reproducibles y modelo documentado, incluidas las relaciones de las ventas.
@@ -59,12 +59,12 @@ Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verif
 **Responsable principal:** Augusto implementa los endpoints y validaciones; Tobias acompaña la integración con la base y resuelve con él cualquier ajuste de esquema.
 
 - [ ] **Augusto:** implementar `POST /api/admin/setup` para la configuración inicial del administrador con contraseña protegida.
-- [ ] **Augusto:** implementar listado paginado de productos activos en `GET /api/productos` y detalle en `GET /api/productos/:id`.
-- [ ] **Augusto:** validar IDs, datos obligatorios, tipos, correo y precios positivos en las entradas `POST` y `PUT` correspondientes.
+- [x] **Augusto:** implementar listado de productos activos en `GET /api/productos` y detalle en `GET /api/productos/:id`.
+- [x] **Augusto:** validar IDs, datos obligatorios, tipos y precios positivos en las entradas `POST` y `PUT` correspondientes.
 - [ ] **Augusto, con revisión de Tobias:** implementar `POST /api/ventas`, validar productos y cantidades, calcular el total en servidor y guardar venta y detalle de manera consistente.
 - [ ] **Augusto:** implementar `GET /api/ventas` con carga asociada de productos, cantidades y precios históricos.
-- [ ] **Augusto:** normalizar respuestas y errores HTTP/JSON; documentar ejemplos de éxito y error.
-- [ ] **Tobias:** conectar desde las pantallas de catálogo y compra usando `fetch`, `response.json()`, `async`/`await` y manejo explícito de errores.
+- [x] **Augusto:** normalizar respuestas y errores HTTP/JSON (`{ payload }`, `{ message }`, `{ listaErrores }`).
+- [x] **Tobias:** conectar el catálogo desde el frontend usando `fetch`, `response.json()`, `async`/`await` y datos de respaldo si la API no está disponible.
 - [ ] **Ambos:** comprobar que productos inactivos no puedan comprarse ni aparecer en el catálogo público.
 
 **Salida:** endpoints probados con datos válidos e inválidos y cálculos de venta verificados.
