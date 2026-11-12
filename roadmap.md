@@ -49,7 +49,7 @@ Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verif
 - [ ] **Tobias:** definir el esquema SQL completo, relaciones, restricciones y reglas de borrado necesarias.
 - [x] **Tobias:** usar consultas parametrizadas con `?` para valores variables; nunca concatenar datos de entrada en SQL.
 - [x] **Tobias:** seleccionar únicamente los atributos necesarios y validar identificadores/datos antes de consultar.
-- [x] **Tobias:** crear script SQL reproducible para inicializar el esquema y datos iniciales de demostración (`database.sql`).
+- [x] **Tobias:** crear script SQL reproducible para inicializar el esquema de productos (`database.sql`).
 - [ ] **Ambos:** verificar que la creación del esquema y la carga inicial funcionen desde cero, y revisar que el modelo cubra los datos necesarios para la API.
 
 **Salida:** datos reproducibles y modelo documentado, incluidas las relaciones de las ventas.
@@ -59,12 +59,12 @@ Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verif
 **Responsable principal:** Augusto implementa los endpoints y validaciones; Tobias acompaña la integración con la base y resuelve con él cualquier ajuste de esquema.
 
 - [ ] **Augusto:** implementar `POST /api/admin/setup` para la configuración inicial del administrador con contraseña protegida.
-- [x] **Augusto:** implementar listado de productos activos en `GET /api/productos` y detalle en `GET /api/productos/:id`.
+- [x] **Augusto:** implementar listado de productos en `GET /api/productos` y detalle en `GET /api/productos/:id`.
 - [x] **Augusto:** validar IDs, datos obligatorios, tipos y precios positivos en las entradas `POST` y `PUT` correspondientes.
 - [ ] **Augusto, con revisión de Tobias:** implementar `POST /api/ventas`, validar productos y cantidades, calcular el total en servidor y guardar venta y detalle de manera consistente.
 - [ ] **Augusto:** implementar `GET /api/ventas` con carga asociada de productos, cantidades y precios históricos.
 - [x] **Augusto:** normalizar respuestas y errores HTTP/JSON (`{ payload }`, `{ message }`, `{ listaErrores }`).
-- [x] **Tobias:** conectar el catálogo desde el frontend usando `fetch`, `response.json()`, `async`/`await` y datos de respaldo si la API no está disponible.
+- [x] **Tobias:** conectar el catálogo desde el frontend con la API usando `fetch`, `response.json()` y `async`/`await`; mostrar un mensaje si no se pueden cargar productos.
 - [ ] **Ambos:** comprobar que productos inactivos no puedan comprarse ni aparecer en el catálogo público.
 
 **Salida:** endpoints probados con datos válidos e inválidos y cálculos de venta verificados.
@@ -91,6 +91,7 @@ Este roadmap ordena el desarrollo y reúne los requisitos del TP en tareas verif
 - [ ] **Augusto:** crear bienvenida y exigir el nombre del cliente; preparar la navegación y el encabezado común del cliente.
 - [ ] **Tobias:** mostrar el catálogo paginado de productos activos por categoría, con imagen, nombre, precio, descripción y cantidad.
 - [ ] **Tobias:** permitir agregar, modificar cantidad y quitar productos del carrito; solicitar confirmación en un modal antes de enviar la compra a la API.
+  - [x] Agregar productos desde las tarjetas y actualizar el contador local del carrito.
 - [ ] **Tobias:** conectar la compra con la API y mostrar el ticket con artículos, cantidades, precios unitarios, total, nombre del cliente, fecha y nombre comercial.
 - [ ] **Tobias:** permitir descargar el ticket como PDF, después de confirmar con el docente la herramienta aprobada.
 - [ ] **Tobias:** al salir del ticket, limpiar datos de compra y enlazar con la encuesta implementada por Augusto.

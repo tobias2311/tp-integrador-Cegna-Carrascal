@@ -12,8 +12,8 @@ Las tareas dependen del roadmap general. Coordinar contratos y entregas con Augu
 - [x] Configurar conexión MySQL con `mysql2/promise`, pool de conexiones y variables de entorno vía `dotenv`.
 - [ ] Definir tablas, relaciones y esquema SQL para productos, ventas, usuarios, detalle de venta y encuestas.
 - [x] Usar consultas parametrizadas con `?` para valores recibidos; evitar concatenar entradas en SQL.
-- [x] Crear datos de prueba para las categorías de indumentaria y equipamiento (tabla `products` en MySQL y `database.sql`).
-- [x] Documentar cómo levantar la base vacía y cargar los datos de demostración (`database.sql` y `README.md`).
+- [x] Cargar productos de prueba para las categorías de indumentaria y equipamiento en la tabla `products` de MySQL.
+- [x] Documentar cómo inicializar la base vacía (`database.sql` y `README.md`).
 
 ## Etapa 2 — Acceso y catálogo administrativo
 
@@ -22,13 +22,14 @@ Las tareas dependen del roadmap general. Coordinar contratos y entregas con Augu
 - [ ] Agregar acceso rápido para las credenciales de demostración requeridas por la cátedra; mantenerlas separadas de credenciales reales.
 - [ ] Construir dashboard de productos en HTML/CSS/JavaScript nativo con categoría y estado.
 - [ ] Implementar alta y edición de productos con las herramientas de carga de imágenes aprobadas por el docente.
-- [x] Implementar baja lógica (`active = 0`) y reactivación con confirmación visual desde la API (`DELETE` y `PUT`).
+- [x] Implementar baja lógica (`active = 0`) y reactivación desde la API (`DELETE` y `PUT`).
 - [x] Verificar que cambiar el estado no borre registros de productos ni de ventas (baja lógica, no DELETE físico).
 
 ## Etapa 3 — Catálogo y compra del cliente
 
-- [x] Construir la presentación del catálogo con filtros por categoría, conectado a `GET /api/productos` con datos de respaldo.
+- [x] Construir la presentación del catálogo con filtros por categoría, conectado a `GET /api/productos` y sin productos de respaldo.
 - [ ] Implementar la lógica del carrito: agregar productos, cambiar cantidades y eliminar.
+  - [x] Agregar productos desde las tarjetas y actualizar el contador local del carrito.
 - [ ] Construir el modal de confirmación de compra.
 - [ ] Conectar la confirmación con `POST /api/ventas` y mostrar errores de API sin simular una compra exitosa.
 - [ ] Construir el ticket con cliente, fecha, nombre comercial, productos, cantidades, precio unitario y total.

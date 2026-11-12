@@ -9,7 +9,7 @@ Las tareas dependen del roadmap general. Acordar con Tobias interfaces, nombres 
 - [x] Acordar con Tobias contrato de datos, respuestas JSON y errores (`{ payload }`, `{ message }`, `{ listaErrores }`).
 - [x] Mantener Express, módulos ES y rutas con las herramientas vistas en la cátedra (sin patrones no vistos en clase).
 - [x] Implementar endpoints Express: `GET /api/products`, `GET /api/products/:id`, `POST /api/products`, `PUT /api/products/:id`, `DELETE /api/products/:id`.
-- [x] Implementar listado de productos activos y detalle de producto por ID con validación de ID entero positivo.
+- [x] Implementar listado de productos y detalle por ID con validación de ID entero positivo.
 - [x] Validar parámetros/IDs, campos obligatorios, tipos y valores positivos con middlewares `validateId` y `validateProduct`.
 - [ ] Implementar registro de ventas: validar disponibilidad y cantidades, delegar persistencia y comprobar total calculado en servidor.
 - [ ] Implementar historial de ventas con sus productos, cantidades y precios al momento de la compra.
