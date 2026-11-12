@@ -41,7 +41,9 @@ backend/
 
 frontend/
 ├── index.html                        # Página del catálogo
-├── assets/                           # Imágenes de indumentaria y equipamiento
+├── assets/
+│   ├── indumentaria/                 # Fotos de remeras, shorts, camperas y conjuntos
+│   └── equipamiento/                 # Fotos de pelotas, bandas y botellas
 ├── css/
 │   ├── base.css                      # Estilos generales
 │   ├── navbar.css                    # Encabezado y navegación

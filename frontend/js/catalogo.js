@@ -1,6 +1,7 @@
 let products = [];
 let currentCategory = "todas";
 let catalogStatus = "loading";
+const cart = [];
 
 const API_BASE_URL = "http://localhost:3000";
 const productGrid = document.querySelector("#product-grid");
@@ -8,6 +9,7 @@ const resultsCount = document.querySelector("#results-count");
 const filterButtons = document.querySelectorAll(".filter-button");
 const catalogTitle = document.querySelector("#catalog-title");
 const demoNote = document.querySelector(".demo-note");
+const cartCountLabel = document.querySelector("#cart-count");
 
 const currencyFormatter = new Intl.NumberFormat("es-AR", {
   style: "currency",
@@ -57,7 +59,17 @@ function createProductCard(product) {
   price.className = "product-price";
   price.textContent = currencyFormatter.format(product.price);
 
-  info.append(category, name, description, price);
+  const addToCartButton = document.createElement("button");
+  addToCartButton.className = "add-to-cart-button";
+  addToCartButton.type = "button";
+  addToCartButton.textContent = "Agregar al carrito";
+  addToCartButton.setAttribute("aria-label", `Agregar ${product.name} al carrito`);
+  addToCartButton.addEventListener("click", () => {
+    cart.push(product);
+    cartCountLabel.textContent = `Carrito: ${cart.length} ${cart.length === 1 ? "producto" : "productos"}`;
+  });
+
+  info.append(category, name, description, price, addToCartButton);
   article.append(imageContainer, info);
   return article;
 }
